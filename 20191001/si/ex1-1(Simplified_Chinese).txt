@@ -1,0 +1,38 @@
+﻿练习1-1: 
+Page_Load
+    {
+        Label2.Text = "欢迎光临";
+        Label2.ForeColor = System.Drawing.Color.Red;
+    }
+
+btnOk_Click
+    {
+        Label2.Text = TextBox1.Text + "您好,目前时间是" + 
+            DateTime.Now.ToString();
+        Label2.ForeColor = System.Drawing.Color.Blue;
+    }
+
+
+
+
+
+
+
+-------------------------------------
+第一网页
+Default.aspx
+
+<title>学号:1010640111
+(陈阿奇)的网站
+
+姓名:  [TextBox]
+[确定]
+Label2
+
+
+第二网页
+Default2.aspx
+
+亚洲大学资工系
+http://csie.asia.edu.tw
+

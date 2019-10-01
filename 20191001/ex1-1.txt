@@ -1,0 +1,35 @@
+練習1-1: 
+Page_Load
+    {
+        Label2.Text = "歡迎光臨";
+        Label2.ForeColor = System.Drawing.Color.Red;
+    }
+
+Button1_Click
+    {
+        Label2.Text = TextBox1.Text + "您好,目前時間是" + 
+            DateTime.Now.ToString();
+        Label2.ForeColor = System.Drawing.Color.Blue;
+    }
+
+
+
+
+-------------------------------------
+第一網頁
+Default.aspx
+
+<title>學號:1010640111
+(陳阿奇)的網站
+
+Label1(姓名:) [TextBox]
+[確定]
+Label2
+
+
+第二網頁
+Default2.aspx
+
+亞洲大學資工系
+http://csie.asia.edu.tw
+
