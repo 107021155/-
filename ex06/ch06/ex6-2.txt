@@ -1,0 +1,64 @@
+﻿練習6-2: 
+-----------------------------------------------------
+ABC公司
+[ImageButton1][ImageButton2][ImageButton3]
+   (購物)        (藝術)        (上傳)
+shop-click.jpg  art_btn.jpg   upload_btn.jpg
+
+[MultiView1]: ActiveViewIndex = 0 
+  點入MultiView中，接下來連按3次View產生三個檢視頁面
+  [View1]
+    按住shift鍵，點選購物三面板(ex6-1)剪下貼上
+
+  [View2]
+    [Panel4]: (寬450x高174, 背景=bg.jpg)
+    <Enter空白一行>
+    <空白三格>廣告圖片[Image1]: (art_info.jpg) 圖放大一點
+
+  [View3]
+    [Panel5]: (寬450x高174, 背景=bg.jpg)
+    <Enter空白二行>
+          上傳檔案: [FileUpload1]
+          上傳[Button5]
+          標籤[Label2]
+          全部字體大小: Large (18pt)
+
+-----------------------------------------------------
+    ImageButton1_Click
+    {
+        MultiView1.ActiveViewIndex = 0;           // 顯示第1個View, 即View1
+        ImageButton1.ImageUrl = "images/buttons/shop-click.jpg";
+        ImageButton2.ImageUrl = "images/buttons/art_btn.jpg";
+        ImageButton3.ImageUrl = "images/buttons/upload_btn.jpg";
+    }
+
+    ImageButton2_Click
+    {
+        MultiView1.ActiveViewIndex = 1;           // 顯示第2個View, 即View2
+        ImageButton1.ImageUrl = "images/buttons/shop_btn.jpg";
+        ImageButton2.ImageUrl = "images/buttons/art-click.jpg";
+        ImageButton3.ImageUrl = "images/buttons/upload_btn.jpg";
+    }
+
+    ImageButton3_Click
+    {
+        MultiView1.ActiveViewIndex = 2;           // 顯示第3個View, 即View3
+        ImageButton1.ImageUrl = "images/buttons/shop_btn.jpg";
+        ImageButton2.ImageUrl = "images/buttons/art_btn.jpg";
+        ImageButton3.ImageUrl = "images/buttons/upload-click.jpg";
+    }
+
+    Button5_Click
+    {
+        if (FileUpload1.HasFile)
+        {
+           FileUpload1.SaveAs(Server.MapPath("images") + "\\" + FileUpload1.FileName);
+           Label2.Text = "檔案名稱：<font color=blue>" + FileUpload1.FileName + 
+               "</font><br> 檔案大小："+FileUpload1.FileContent.Length.ToString()+"bytes.";
+        }
+        else
+           Label2.Text = "請先選取欲上傳檔案，再按上傳，謝謝!";
+    }
+
+
+

@@ -1,0 +1,81 @@
+﻿練習6-1: 
+-------------------------------------------------------------
+1. 圖[Image1] (company_title.jpg) 
+
+接下來連按3次Panel產生三個面板控制項(Width=450, Height=300)
+2. 面板[Panel1] (BackImageUrl=carbg.jpg, Visible = true)
+   姓名: 文字方塊[TextBox1]
+   性別: 單選按鈕清單[RadioButtonList1]: 男(Selected=True)  女
+                               RepeatDirection = Horizontal
+                               RepeatLayout = Flow
+   你想購買以下哪些產品?
+   核取方塊清單[CheckBoxList1]:蘋果 奇異果 芭樂 香蕉 橘子 柳丁
+                               RepeatColumns = 4
+   按鈕[Button1]:加入購物車
+
+3. 面板[Panel2] (BackImageUrl=checkbg.jpg, Visible = false)
+   標籤[Label1]
+   <Enter空一行>
+   上一步[Button2] 下一步[Button3]
+   (置中對齊)
+
+4. 面板[Panel3] (BackImageUrl=finishbg.jpg, Visible = false)
+   購物完成！
+   <Enter空一行>
+   回主畫面[Button4]
+   (置中對齊)
+
+全部字體大小: Large (18pt)
+------------------------------------------------------------
+
+   // 按下[放入購物車]
+    Button1_Click
+    {
+        int sum = 0;
+        if (RadioButtonList1.SelectedItem.Text == "男")
+            Label1.Text = "<b><font color=blue>"+TextBox1.Text+"</font></b>先生";
+        else
+            Label1.Text = "<b><font color=blue>"+TextBox1.Text+"</font></b>小姐";
+        Label1.Text += "您好:<br />您目前購物車中的物品有<br /><font color=red>";
+        // 將chkProduct核取方塊清單被選取的項目逐一顯示在lblShow標籤
+        for (int i = 0; i < CheckBoxList1.Items.Count; i++)
+            if (CheckBoxList1.Items[i].Selected)
+            {
+                Label1.Text += CheckBoxList1.Items[i].Text + " ";
+                sum++;
+            }
+        Label1.Text += "</font>共" + sum.ToString() + "項。";
+        Panel1.Visible = false;   // panelCar不顯示
+        Panel2.Visible = true;   // panelCheck顯示
+        Panel3.Visible = false; // panelFinish顯示
+    }
+
+    // 按下[上一步]
+    Button2_Click
+    {
+        Panel1.Visible = true;
+        Panel2.Visible = false;
+        Panel3.Visible = false;
+    }
+
+    // 按下[下一步]
+    Button3_Click
+    {
+        Panel1.Visible = false;
+        Panel2.Visible = false;
+        Panel3.Visible = true;
+    }
+
+    // 按下[回主畫面]
+    Button4_Click
+    {
+        Panel1.Visible = true;
+        Panel2.Visible = false;
+        Panel3.Visible = false;
+        TextBox1.Text = "";  
+        // 將chkProduct核取方塊清單內的所有選項設為不勾選
+        for (int i = 0; i < CheckBoxList1.Items.Count; i++)
+            CheckBoxList1.Items[i].Selected = false;
+    }
+
+
